@@ -22,7 +22,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""name"": ""Movement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""69a45825-25e0-4a9a-8b93-33c320402a2d"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -50,7 +50,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Negative"",
                     ""id"": ""b587d1e0-71fc-409f-b51b-02a179220a63"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
     private InputAction movement;
     private InputAction takeoff;
 
+    private float directionx;
+    [SerializeField]
+    private float moveSpeed;
+
     private void Awake() 
     {
         gameInputActions = new GameInputActions();
@@ -26,7 +30,9 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(movement.ReadValue<float>());
+        //On déplace le perso gauche ou droite
+        directionx = movement.ReadValue<float>();
+        transform.Translate(new Vector3(directionx,0,0));
     }
     void TakeOff(InputAction.CallbackContext context)
     {
