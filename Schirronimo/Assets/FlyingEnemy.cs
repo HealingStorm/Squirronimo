@@ -5,9 +5,8 @@ using UnityEngine;
 public class FlyingEnemy : MonoBehaviour
 {
     public int speed;
-    private Vector3 rightMax;
-    private Vector3 leftMax;
     private Vector3 direction;
+    public SpriteRenderer sprR;
 
     void Start()
     {
@@ -19,10 +18,12 @@ public class FlyingEnemy : MonoBehaviour
         if(transform.position.x >= 6)
         {
             direction = -direction;
+            sprR.flipX = true;
         }
         if(transform.position.x <= -6)
         {
             direction = -direction;
+            sprR.flipX = false;
         }
     }
 }

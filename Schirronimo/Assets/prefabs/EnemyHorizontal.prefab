@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  sprR: {fileID: 3607778345697098958}
 --- !u!1 &7651089096939959651
 GameObject:
   m_ObjectHideFlags: 0
