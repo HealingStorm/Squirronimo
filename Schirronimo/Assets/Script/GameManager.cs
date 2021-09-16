@@ -74,14 +74,16 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TakeOff()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+
+        gameCam.Priority = 10;
+        gameCam.Follow = player.transform;
+
+        yield return new WaitForSeconds(1f);
 
         PlayerRB2D.gravityScale = gravityScale;
         playerScript.EnableMovementInputs();
         playerScript.DisableTakeoffInputs();
-
-        gameCam.Priority = 10;
-        gameCam.Follow = player.transform;
 
         if (playerScript.tapNumber <= 5)
         {
