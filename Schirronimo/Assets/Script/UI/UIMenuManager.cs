@@ -16,6 +16,8 @@ public class UIMenuManager : MonoBehaviour
 
     public GameObject gameOverScreen;
 
+    public GameObject controlScreen;
+
     public GameObject highScoreTxt;
 
     public GameObject currentScoreTxt;
@@ -51,6 +53,7 @@ public class UIMenuManager : MonoBehaviour
     public void OnReturnToMenu()
     {
         pauseMenu.SetActive(false);
+        gameOverScreen.SetActive(false);
         mainMenu.SetActive(true);
         SceneManager.LoadScene("Main Menu Scene");
     }
@@ -67,4 +70,15 @@ public class UIMenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void OnControlsPressed()
+    {
+        controlScreen.SetActive(true);
+        mainMenu.SetActive(false);
+    }
+
+    public void OnRestart()
+    {
+        gameOverScreen.SetActive(false);
+        SceneManager.LoadScene("Game Scene");
+    }
 }
