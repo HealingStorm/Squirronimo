@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Booster : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Player playerScript;
+    void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(other.CompareTag("Player"))
+        {
+            playerScript = other.GetComponent<Player>();
+            playerScript.rb2D.velocity += new Vector2(0, 20);
+            Destroy(gameObject);
+        }
     }
 }

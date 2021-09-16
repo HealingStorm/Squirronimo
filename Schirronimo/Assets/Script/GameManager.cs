@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     private CinemachineVirtualCamera startCam;
 
     //collider game over
-    public GameObject deathFloor;
+    public GameObject laser;
 
     private void Awake()
     {
@@ -50,12 +50,12 @@ public class GameManager : MonoBehaviour
         //quand le joueur monte, le death ray monte, quand le joueur descend, celui-ci reste sur place pour le cueillir
         if(PlayerRB2D.velocity.y <= 0)
         {
-            deathFloor.transform.position = new Vector2(0, deathFloor.transform.position.y);
+            laser.transform.position = new Vector2(0, laser.transform.position.y);
         }
 
         if(PlayerRB2D.velocity.y > 0)
         {
-            deathFloor.transform.position = new Vector2(0, player.transform.position.y - 20);
+            laser.transform.position = new Vector2(0, player.transform.position.y - 20);
         }
     }
 

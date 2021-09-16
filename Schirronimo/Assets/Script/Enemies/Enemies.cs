@@ -9,9 +9,9 @@ public class Enemies : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Debug.Log("gameover");
             playerScript = other.GetComponent<Player>();
             playerScript.rb2D.velocity -= new Vector2(0, 10);
+            Destroy(gameObject);
         }
     }
 }
