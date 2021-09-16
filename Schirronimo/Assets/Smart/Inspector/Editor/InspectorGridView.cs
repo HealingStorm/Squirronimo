@@ -79,7 +79,6 @@ namespace Smart
                     }
                     else
                     {
-                        Debug.Log("Drawing outside row");
                         BeginHorizontal();
                         gridView.DrawAddComponent();
                         EndHorizontal();

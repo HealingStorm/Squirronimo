@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     //Takeoff
     [SerializeField]
-    private int tapNumber;
+    public int tapNumber;
     [SerializeField]
     private float takeOffTimer;
 
@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     {
         gameInputActions = new GameInputActions();
         rb2D = transform.GetComponent<Rigidbody2D>();
+        tapNumber = 0;
     }
     void OnEnable()
     {
@@ -47,10 +48,37 @@ public class Player : MonoBehaviour
         velocity = new Vector2(directionx * moveSpeed, 0);
         rb2D.MovePosition(rb2D.position + velocity * Time.fixedDeltaTime);
     }
+
     void TakeOff(InputAction.CallbackContext context)
     {
-        Debug.Log("je m'envole");
+        tapNumber += 1;
     }
+
+    #region Enable/DisableInputs
+    public void DisableTakeoffInputs()
+    {
+        takeoff.Disable();
+        Debug.Log("takeoff inputs disabled");
+    }
+
+    public void DisableMovementInputs()
+    {
+        movement.Disable();
+        Debug.Log("movement inputs disabled");
+    }
+
+    public void EnableTakeoffInputs()
+    {
+        takeoff.Enable();
+        Debug.Log("takeoff inputs enabled");
+    }
+
+    public void EnableMovementInputs()
+    {
+        movement.Enable();
+        Debug.Log("movement inputs enabled");
+    }
+    #endregion
 
     void OnDisable()
     {
