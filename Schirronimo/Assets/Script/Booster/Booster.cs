@@ -11,7 +11,7 @@ public class Booster : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerScript = other.GetComponent<Player>();
-            if (playerScript.rb2D.velocity.y < 5)
+            if (playerScript.rb2D.velocity.y < 0)
             {
                 playerScript.rb2D.velocity += new Vector2(0, boosterBoost);
                 Destroy(gameObject);

@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
             sprRend.flipX = false;
         }
 
-        if(rb2D.velocity.y >= 5)
+        if(rb2D.velocity.y >= 0)
         {
             sprRend.color = new Color(1f, 1f, 1f, 0.8f);
         }
