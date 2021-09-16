@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     //collider game over
     public GameObject laser;
 
+    //Spawner toggle
+    public bool spawnerToggle;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -33,6 +36,8 @@ public class GameManager : MonoBehaviour
         }
         _instance = this;
         DontDestroyOnLoad(this.gameObject);
+
+        spawnerToggle = false;
 
         PlayerRB2D = player.GetComponent<Rigidbody2D>();
         gameCam = gamecamGO.GetComponent<CinemachineVirtualCamera>();
@@ -69,6 +74,8 @@ public class GameManager : MonoBehaviour
 
         gameCam.Follow = null;
         gamecamGO.transform.position = new Vector3(0,2,-10);
+        
+        spawnerToggle = true;
         
     }
 
