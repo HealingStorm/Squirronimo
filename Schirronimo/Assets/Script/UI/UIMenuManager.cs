@@ -14,9 +14,17 @@ public class UIMenuManager : MonoBehaviour
 
     public GameObject gameHUD;
 
+    public GameObject gameOverScreen;
+
     public GameObject highScoreTxt;
 
     public GameObject currentScoreTxt;
+
+    public GameObject finalScoreTxt;
+
+    public GameObject finalHighScore;
+
+    public GameObject newRecord;
 
 
 
