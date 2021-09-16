@@ -81,4 +81,10 @@ public class UIMenuManager : MonoBehaviour
         gameOverScreen.SetActive(false);
         SceneManager.LoadScene("Game Scene");
     }
+
+    public void OnCloseControls()
+    {
+        controlScreen.SetActive(false);
+        mainMenu.SetActive(true);
+    }
 }
