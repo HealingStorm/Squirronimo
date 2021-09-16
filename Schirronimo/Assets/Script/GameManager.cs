@@ -56,6 +56,10 @@ public class GameManager : MonoBehaviour
         if (playerScript.tapNumber <= 5)
         {
             Debug.Log("jump 100 meters");
+            playerScript.jumpHeight = 10;
+            //playerScript.rb2D.velocity = new Vector2(playerScript.moveVelocity, playerScript.jumpHeight);
+            //playerScript.rb2D.AddForce(playerScript.rb2D.velocity);
+            playerScript.tapNumber = 0;
         }
         else
         {

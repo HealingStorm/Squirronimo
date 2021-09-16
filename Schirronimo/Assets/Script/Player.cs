@@ -16,20 +16,31 @@ public class Player : MonoBehaviour
     private float directionx;
     [SerializeField]
     private float moveSpeed;
-    private Rigidbody2D rb2D;
-    private Vector2 velocity;
+    [HideInInspector]
+    public Rigidbody2D rb2D;
+    //private Vector2 velocity;
+    [HideInInspector]
+    public Vector2 moveVelocity;
+    [HideInInspector]
+    public float jumpHeight;
+    private SpriteRenderer sprRend;
+
+    private Vector2 m_Velocity = Vector2.zero;
+
+    [SerializeField]
+    private float MoveSliding;
 
     //Takeoff
-    [SerializeField]
+    [HideInInspector]
     public int tapNumber;
-    [SerializeField]
-    private float takeOffTimer;
 
     private void Awake() 
     {
         gameInputActions = new GameInputActions();
         rb2D = transform.GetComponent<Rigidbody2D>();
+        sprRend = transform.GetChild(0).GetComponent<SpriteRenderer>();
         tapNumber = 0;
+        jumpHeight = 0;
     }
     void OnEnable()
     {
@@ -45,8 +56,22 @@ public class Player : MonoBehaviour
     {
         //On déplace le perso gauche ou droite
         directionx = movement.ReadValue<float>();
-        velocity = new Vector2(directionx * moveSpeed, 0);
-        rb2D.MovePosition(rb2D.position + velocity * Time.fixedDeltaTime);
+        //velocity = new Vector2(directionx * moveSpeed, 0);
+        //rb2D.MovePosition(rb2D.position + velocity * Time.fixedDeltaTime);
+        moveVelocity = new Vector2(directionx * moveSpeed, rb2D.velocity.y);
+        //rb2D.velocity = moveVelocity;
+        rb2D.velocity = Vector2.SmoothDamp(rb2D.velocity, moveVelocity, ref m_Velocity, MoveSliding);
+
+
+        //flip du sprite
+        if(directionx == -1)
+        {
+            sprRend.flipX = true;
+        }
+        if(directionx == 1)
+        {
+            sprRend.flipX = false;
+        }
     }
 
     void TakeOff(InputAction.CallbackContext context)
