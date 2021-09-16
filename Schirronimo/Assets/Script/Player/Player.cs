@@ -65,6 +65,15 @@ public class Player : MonoBehaviour
             sprRend.flipX = false;
         }
 
+        if(rb2D.velocity.y >= 5)
+        {
+            sprRend.color = new Color(1f, 1f, 1f, 0.8f);
+        }
+        else
+        {
+            sprRend.color = new Color(1f, 1f, 1f, 1f);
+        }
+
         //colliders suivent le y du perso
         leftCollider.transform.position = new Vector2(leftCollider.transform.position.x, transform.position.y);
         rightCollider.transform.position = new Vector2(rightCollider.transform.position.x, transform.position.y);
