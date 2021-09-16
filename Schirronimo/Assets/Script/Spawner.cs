@@ -41,8 +41,17 @@ public class Spawner : MonoBehaviour
                 }
                 else
                 {
-                    GameObject stationnaryEnemyClone = Instantiate(stationnaryEnemy, spawningZone, Quaternion.identity, spawnerParent);
-                    boostOrBad = false;
+                    staticOrMoveE = Random.Range(0, 4);
+                    if (staticOrMoveE <= 2)
+                    {
+                        GameObject stationnaryEnemyClone = Instantiate(stationnaryEnemy, spawningZone, Quaternion.identity, spawnerParent);
+                        boostOrBad = false;
+                    }
+                    if (staticOrMoveE == 3)
+                    {
+                        GameObject horizontalEnemyClone = Instantiate(horizontalEnemy, spawningZone, Quaternion.identity, spawnerParent);
+                        boostOrBad = false;
+                    }
                 }
             }
         }

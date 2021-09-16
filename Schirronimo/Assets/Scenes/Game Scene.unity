@@ -779,6 +779,7 @@ MonoBehaviour:
   player: {fileID: 423033125}
   booster: {fileID: 6737840542893884496, guid: aea1755942a031f448060180e9ea2605, type: 3}
   stationnaryEnemy: {fileID: 1938786381398587427, guid: 1694086d792132847bd333d30278d2ac, type: 3}
+  horizontalEnemy: {fileID: 3306122061693779647, guid: 3a38e9bf8525bcf48aacf9b328d66ff7, type: 3}
   spawnerParent: {fileID: 1252784275}
   timerDefault: 0.3
 --- !u!4 &1252784275
