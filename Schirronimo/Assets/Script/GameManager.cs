@@ -18,7 +18,13 @@ public class GameManager : MonoBehaviour
 
         PlayerRB2D = player.GetComponent<Rigidbody2D>();
         gameCam = gamecamGO.GetComponent<CinemachineVirtualCamera>();
+        startCam = startcamGO.GetComponent<CinemachineVirtualCamera>();
         playerScript = player.GetComponent<Player>();
+
+        startCam.Priority = 5;
+        gameCam.Priority = 1;
+        GameStart();
+        StartCoroutine(TakeOff());
     }
     
     public GameObject player;
@@ -28,11 +34,13 @@ public class GameManager : MonoBehaviour
     public GameObject gamecamGO;
     private CinemachineVirtualCamera gameCam;
 
-    void Start()
-    {
-        GameStart();
-        StartCoroutine(TakeOff());
-    }
+    public GameObject startcamGO;
+    private CinemachineVirtualCamera startCam;
+
+    public float gravityScale;
+
+    public int takeoffHeight;
+
     
     public void GameStart()
     {
@@ -42,28 +50,41 @@ public class GameManager : MonoBehaviour
         playerScript.DisableMovementInputs();
 
         gameCam.Follow = null;
-        gamecamGO.transform.position = new Vector3(0,4,-10);
+        gamecamGO.transform.position = new Vector3(0,2,-10);
         
     }
 
     IEnumerator TakeOff()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
+        PlayerRB2D.gravityScale = gravityScale;
         playerScript.EnableMovementInputs();
         playerScript.DisableTakeoffInputs();
 
+        gameCam.Priority = 10;
+        gameCam.Follow = player.transform;
+
         if (playerScript.tapNumber <= 5)
         {
-            Debug.Log("jump 100 meters");
-            playerScript.jumpHeight = 10;
-            //playerScript.rb2D.velocity = new Vector2(playerScript.moveVelocity, playerScript.jumpHeight);
-            //playerScript.rb2D.AddForce(playerScript.rb2D.velocity);
+            Debug.Log("jump 10 meters");
+            playerScript.jumpHeight = takeoffHeight;
+            playerScript.rb2D.AddForce(new Vector2(0, playerScript.jumpHeight));
             playerScript.tapNumber = 0;
         }
-        else
+        if (playerScript.tapNumber > 5 && playerScript.tapNumber <= 10)
         {
-            Debug.Log("jump 200 meters");
+            Debug.Log("jump 20 meters");
+            playerScript.jumpHeight = takeoffHeight + 1000;
+            playerScript.rb2D.AddForce(new Vector2(0, playerScript.jumpHeight));
+            playerScript.tapNumber = 0;
+        }
+        if (playerScript.tapNumber > 10)
+        {
+            Debug.Log("jump 20 meters");
+            playerScript.jumpHeight = takeoffHeight + 2000;
+            playerScript.rb2D.AddForce(new Vector2(0, playerScript.jumpHeight));
+            playerScript.tapNumber = 0;
         }
     }
 }

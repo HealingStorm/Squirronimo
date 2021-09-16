@@ -47,11 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b9ccd7561d3eb54da63642cfcdbb155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
   rb2D: {fileID: 0}
   moveVelocity: {x: 0, y: 0}
-  jumpHeight: 0
-  MoveSliding: 0.05
+  jumpHeight: 10
+  MoveSliding: 0.5
+  leftCollider: {fileID: 0}
+  rightCollider: {fileID: 0}
   tapNumber: 0
 --- !u!50 &5634190779320824603
 Rigidbody2D:
@@ -68,7 +70,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 50
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
