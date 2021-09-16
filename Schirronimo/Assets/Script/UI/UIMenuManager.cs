@@ -12,6 +12,14 @@ public class UIMenuManager : MonoBehaviour
 
     public GameObject mainMenu;
 
+    public GameObject gameHUD;
+
+    public GameObject highScoreTxt;
+
+    public GameObject currentScoreTxt;
+
+
+
     private void Awake() 
     {
         if(s_Singleton != null)
@@ -28,6 +36,7 @@ public class UIMenuManager : MonoBehaviour
     public void OnPlayPressed()
     {
         mainMenu.SetActive(false);
+        gameHUD.SetActive(true);
         SceneManager.LoadScene("Game Scene");
     }
 
@@ -41,6 +50,7 @@ public class UIMenuManager : MonoBehaviour
     public void OnResumeGame()
     {
         pauseMenu.SetActive(false);
+        gameHUD.SetActive(true);
         Time.timeScale = 1f;
     }
 
