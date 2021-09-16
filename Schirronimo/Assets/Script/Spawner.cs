@@ -8,8 +8,10 @@ public class Spawner : MonoBehaviour
     public Transform player;
     public GameObject booster;
     public GameObject stationnaryEnemy;
+    public GameObject horizontalEnemy;
     public Transform spawnerParent;
-    private int boostOrBad;
+    private bool boostOrBad;
+    private int staticOrMoveE;
 
     private float timer;
     public float timerDefault;
@@ -17,7 +19,8 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         timer = timerDefault;
-        boostOrBad = 0;
+        boostOrBad = false;
+        staticOrMoveE = 0;
     }
 
     void Update()
@@ -30,16 +33,16 @@ public class Spawner : MonoBehaviour
                 timer = timerDefault;
 
                 spawningZone = new Vector3(Random.Range(-6f, 6f), Random.Range(player.position.y + 7, player.position.y + 30), player.position.z);
-                if (boostOrBad == 0)
+                if (boostOrBad == false)
                 {
                     GameObject boosterClone = Instantiate(booster, spawningZone, Quaternion.identity, spawnerParent);
 
-                    boostOrBad = 1;
+                    boostOrBad = true;
                 }
                 else
                 {
                     GameObject stationnaryEnemyClone = Instantiate(stationnaryEnemy, spawningZone, Quaternion.identity, spawnerParent);
-                    boostOrBad = 0;
+                    boostOrBad = false;
                 }
             }
         }
