@@ -534,7 +534,7 @@ MonoBehaviour:
   booster: {fileID: 6737840542893884496, guid: aea1755942a031f448060180e9ea2605, type: 3}
   stationnaryEnemy: {fileID: 1938786381398587427, guid: 1694086d792132847bd333d30278d2ac, type: 3}
   spawnerParent: {fileID: 1252784275}
-  timer: 0.5
+  timerDefault: 0.5
 --- !u!4 &1252784275
 Transform:
   m_ObjectHideFlags: 0

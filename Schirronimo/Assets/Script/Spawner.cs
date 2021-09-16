@@ -11,13 +11,12 @@ public class Spawner : MonoBehaviour
     public Transform spawnerParent;
     private int boostOrBad;
 
-    public float timer;
-    private float timerDefault;
+    private float timer;
+    public float timerDefault;
 
     void Start()
     {
-        timer = 1f;
-        timerDefault = timer;
+        timer = timerDefault;
         boostOrBad = 0;
     }
 
@@ -30,10 +29,11 @@ public class Spawner : MonoBehaviour
             {
                 timer = timerDefault;
 
-                spawningZone = new Vector3(Random.Range(-6f, 6f), Random.Range(player.position.y + 7, player.position.y + 14), player.position.z);
+                spawningZone = new Vector3(Random.Range(-6f, 6f), Random.Range(player.position.y + 5, player.position.y + 50), player.position.z);
                 if (boostOrBad == 0)
                 {
                     GameObject boosterClone = Instantiate(booster, spawningZone, Quaternion.identity, spawnerParent);
+
                     boostOrBad = 1;
                 }
                 else

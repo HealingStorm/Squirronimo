@@ -5,13 +5,17 @@ using UnityEngine;
 public class Booster : MonoBehaviour
 {
     private Player playerScript;
+    public int boosterBoost;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             playerScript = other.GetComponent<Player>();
-            playerScript.rb2D.velocity += new Vector2(0, 20);
-            Destroy(gameObject);
+            if (playerScript.rb2D.velocity.y < 5)
+            {
+                playerScript.rb2D.velocity += new Vector2(0, boosterBoost);
+                Destroy(gameObject);
+            }
         }
     }
 }

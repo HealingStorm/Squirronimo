@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - laser
+  - booster
+  - enemy
   layers:
   - Default
   - TransparentFX
