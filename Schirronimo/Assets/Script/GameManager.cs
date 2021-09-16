@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class GameManager : MonoBehaviour
     private Player playerScript;
     public float gravityScale;
     public int takeoffHeight;
+
+    //Score
+    public int currentScore;
+    public int maxScore;
+    public int highScore;
 
     //cams
     public GameObject gamecamGO;
@@ -27,6 +33,9 @@ public class GameManager : MonoBehaviour
     //Spawner toggle
     public bool spawnerToggle;
 
+    //UIManager reference
+    public UIMenuManager menuManager;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -36,18 +45,20 @@ public class GameManager : MonoBehaviour
         }
         _instance = this;
         DontDestroyOnLoad(this.gameObject);
+        menuManager = UIMenuManager.s_Singleton;        
+    }
 
+    private void Start() 
+    {
         spawnerToggle = false;
-
         PlayerRB2D = player.GetComponent<Rigidbody2D>();
         gameCam = gamecamGO.GetComponent<CinemachineVirtualCamera>();
         startCam = startcamGO.GetComponent<CinemachineVirtualCamera>();
         playerScript = player.GetComponent<Player>();
-
         startCam.Priority = 5;
         gameCam.Priority = 1;
+
         GameStart();
-        StartCoroutine(TakeOff());
     }
 
     void Update()
@@ -62,6 +73,22 @@ public class GameManager : MonoBehaviour
         {
             laser.transform.position = new Vector2(0, player.transform.position.y - 20);
         }
+
+        menuManager.currentScoreTxt.GetComponent<Text>().text = currentScore.ToString();
+        menuManager.highScoreTxt.GetComponent<Text>().text = maxScore.ToString();
+
+        currentScore = Mathf.FloorToInt(player.transform.position.y);
+        if(currentScore >= maxScore)
+        {
+            maxScore = currentScore;
+            if(maxScore >= highScore)
+            {
+                highScore = maxScore;
+            }
+        }
+
+        menuManager.finalScoreTxt.GetComponent<Text>().text = maxScore.ToString();
+        menuManager.finalHighScore.GetComponent<Text>().text = highScore.ToString();
     }
 
     
@@ -76,6 +103,8 @@ public class GameManager : MonoBehaviour
         gamecamGO.transform.position = new Vector3(0,2,-10);
         
         spawnerToggle = true;
+
+        StartCoroutine(TakeOff());
         
     }
 

@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.CompareTag("Player"))
+        {
+            UIMenuManager.s_Singleton.gameOverScreen.SetActive(true);
+        }
+    }
 }

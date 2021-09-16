@@ -79,7 +79,7 @@ public class UIMenuManager : MonoBehaviour
     public void OnRestart()
     {
         gameOverScreen.SetActive(false);
-        SceneManager.LoadScene("Game Scene");
+        GameManager._instance.GameStart();
     }
 
     public void OnCloseControls()
