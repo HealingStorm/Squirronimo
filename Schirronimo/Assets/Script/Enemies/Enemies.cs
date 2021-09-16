@@ -11,7 +11,7 @@ public class Enemies : MonoBehaviour
         {
             Debug.Log("gameover");
             playerScript = other.GetComponent<Player>();
-            playerScript.rb2D.velocity -= new Vector2(0, 5);
+            playerScript.rb2D.velocity -= new Vector2(0, 10);
         }
     }
 }
