@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
             if(maxScore >= highScore)
             {
                 highScore = maxScore;
+                menuManager.newRecord.SetActive(true);
             }
         }
 
