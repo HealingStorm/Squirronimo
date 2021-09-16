@@ -6,6 +6,24 @@ using Cinemachine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
+
+    //player
+    public GameObject player;
+    private Rigidbody2D PlayerRB2D;
+    private Player playerScript;
+    public float gravityScale;
+    public int takeoffHeight;
+
+    //cams
+    public GameObject gamecamGO;
+    private CinemachineVirtualCamera gameCam;
+
+    public GameObject startcamGO;
+    private CinemachineVirtualCamera startCam;
+
+    //collider game over
+    public GameObject deathFloor;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -26,20 +44,20 @@ public class GameManager : MonoBehaviour
         GameStart();
         StartCoroutine(TakeOff());
     }
-    
-    public GameObject player;
-    private Rigidbody2D PlayerRB2D;
-    private Player playerScript;
 
-    public GameObject gamecamGO;
-    private CinemachineVirtualCamera gameCam;
+    void Update()
+    {
+        //quand le joueur monte, le death ray monte, quand le joueur descend, celui-ci reste sur place pour le cueillir
+        if(PlayerRB2D.velocity.y <= 0)
+        {
+            deathFloor.transform.position = new Vector2(0, deathFloor.transform.position.y);
+        }
 
-    public GameObject startcamGO;
-    private CinemachineVirtualCamera startCam;
-
-    public float gravityScale;
-
-    public int takeoffHeight;
+        if(PlayerRB2D.velocity.y > 0)
+        {
+            deathFloor.transform.position = new Vector2(0, player.transform.position.y - 20);
+        }
+    }
 
     
     public void GameStart()
