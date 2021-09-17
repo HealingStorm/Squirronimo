@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
     public static GameManager _instance;
 
     //player
-    private GameObject player;
-    private Rigidbody2D PlayerRB2D;
+    [HideInInspector]
+    public GameObject player;
+    [HideInInspector]
+    public Rigidbody2D PlayerRB2D;
     private Player playerScript;
     public float gravityScale;
     public int takeoffHeight;
@@ -143,21 +145,18 @@ public class GameManager : MonoBehaviour
 
         if (playerScript.tapNumber <= 5)
         {
-            Debug.Log("jump 10 meters");
             playerScript.jumpHeight = takeoffHeight;
             playerScript.rb2D.AddForce(new Vector2(0, playerScript.jumpHeight));
             playerScript.tapNumber = 0;
         }
         if (playerScript.tapNumber > 5 && playerScript.tapNumber <= 10)
         {
-            Debug.Log("jump 20 meters");
             playerScript.jumpHeight = takeoffHeight + 1000;
             playerScript.rb2D.AddForce(new Vector2(0, playerScript.jumpHeight));
             playerScript.tapNumber = 0;
         }
         if (playerScript.tapNumber > 10)
         {
-            Debug.Log("jump 20 meters");
             playerScript.jumpHeight = takeoffHeight + 2000;
             playerScript.rb2D.AddForce(new Vector2(0, playerScript.jumpHeight));
             playerScript.tapNumber = 0;

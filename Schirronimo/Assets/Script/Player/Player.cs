@@ -96,25 +96,21 @@ public class Player : MonoBehaviour
     public void DisableTakeoffInputs()
     {
         takeoff.Disable();
-        Debug.Log("takeoff inputs disabled");
     }
 
     public void DisableMovementInputs()
     {
         movement.Disable();
-        Debug.Log("movement inputs disabled");
     }
 
     public void EnableTakeoffInputs()
     {
         takeoff.Enable();
-        Debug.Log("takeoff inputs enabled");
     }
 
     public void EnableMovementInputs()
     {
         movement.Enable();
-        Debug.Log("movement inputs enabled");
     }
     #endregion
 
