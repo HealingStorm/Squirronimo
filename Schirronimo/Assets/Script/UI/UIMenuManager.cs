@@ -28,6 +28,8 @@ public class UIMenuManager : MonoBehaviour
 
     public GameObject newRecord;
 
+    public bool inGameScene;
+
 
 
     private void Awake() 
@@ -43,11 +45,17 @@ public class UIMenuManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    void Start()
+    {
+        inGameScene = false;
+    }
+
     public void OnPlayPressed()
     {
         mainMenu.SetActive(false);
         gameHUD.SetActive(true);
         SceneManager.LoadScene("Game Scene");
+        inGameScene = true;
     }
 
     public void OnReturnToMenu()
@@ -56,6 +64,7 @@ public class UIMenuManager : MonoBehaviour
         gameOverScreen.SetActive(false);
         mainMenu.SetActive(true);
         SceneManager.LoadScene("Main Menu Scene");
+        inGameScene = false;
     }
 
     public void OnResumeGame()
