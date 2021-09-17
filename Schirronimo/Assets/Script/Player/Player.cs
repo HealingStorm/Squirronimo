@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private GameInputActions gameInputActions;
     private InputAction movement;
     private InputAction takeoff;
+    private InputAction pauseButton;
 
     //Movements
     private float directionx;
@@ -51,6 +52,10 @@ public class Player : MonoBehaviour
         takeoff = gameInputActions.Player.Takeoff;
         takeoff.performed += TakeOff;
         takeoff.Enable();
+
+        pauseButton = gameInputActions.Player.Pause;
+        pauseButton.performed += UIMenuManager.s_Singleton.OnPause;
+        pauseButton.Enable();
     }
 
     void Update()

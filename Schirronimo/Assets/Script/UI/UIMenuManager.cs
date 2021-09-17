@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class UIMenuManager : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class UIMenuManager : MonoBehaviour
 
     public AudioSource MenuMusic;
 
+    public GameObject spacebarText;
+
 
 
     private void Awake() 
@@ -60,7 +63,6 @@ public class UIMenuManager : MonoBehaviour
         gameHUD.SetActive(true);
         inGameScene = true;
         GameManager._instance.doOnce = false;
-        MenuMusic.Stop();
         SceneManager.LoadScene("Game Scene");
     }
 
@@ -71,7 +73,7 @@ public class UIMenuManager : MonoBehaviour
         mainMenu.SetActive(true);
         inGameScene = false;
         GameManager._instance.doOnce = true;
-        MenuMusic.Play();
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu Scene");
     }
 
@@ -80,6 +82,13 @@ public class UIMenuManager : MonoBehaviour
         pauseMenu.SetActive(false);
         gameHUD.SetActive(true);
         Time.timeScale = 1f;
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        pauseMenu.SetActive(true);
+        gameHUD.SetActive(false);
+        Time.timeScale = 0f;
     }
 
     public void OnQuitGame()

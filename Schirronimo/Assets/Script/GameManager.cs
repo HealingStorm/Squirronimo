@@ -124,6 +124,8 @@ public class GameManager : MonoBehaviour
 
         spawnerToggle = true;
 
+        UIMenuManager.s_Singleton.spacebarText.SetActive(true);
+
         StartCoroutine(TakeOff());
 
     }
@@ -137,6 +139,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        UIMenuManager.s_Singleton.spacebarText.SetActive(false);
         PlayerRB2D.gravityScale = gravityScale;
         playerScript.EnableMovementInputs();
         playerScript.DisableTakeoffInputs();
