@@ -261,6 +261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1795485176080522111, guid: 08b766ff86431c140873552deb28c2a9, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 1559258811057418482}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08b766ff86431c140873552deb28c2a9, type: 3}
 --- !u!1001 &1559258811057418481
@@ -270,34 +274,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1559258810696515025, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.3887358
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258810696515025, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -71.24179
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258810718038282, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258810718038284, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5aa00b7ac8f75ed41a3c10ad78baa1a1, type: 3}
-    - target: {fileID: 1559258810718038284, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258810718038284, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258810718038284, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1559258810982221242, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -346,41 +322,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1559258811467526418, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258811467526418, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -53
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258811957416132, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 80.2751
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258811957416132, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.0000025034
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258811957416132, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -105.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258811957416133, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258812125124128, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -198.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258812125124128, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -105.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559258812515318720, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
+--- !u!82 &1559258811057418482 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4193766003301100019, guid: 65ab19044ef27034a83d2f9dd6440a49, type: 3}
+  m_PrefabInstance: {fileID: 1559258811057418481}
+  m_PrefabAsset: {fileID: 0}

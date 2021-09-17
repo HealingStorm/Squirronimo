@@ -30,6 +30,8 @@ public class UIMenuManager : MonoBehaviour
 
     public bool inGameScene;
 
+    public AudioSource MenuMusic;
+
 
 
     private void Awake() 
@@ -48,6 +50,8 @@ public class UIMenuManager : MonoBehaviour
     void Start()
     {
         inGameScene = false;
+        MenuMusic.Play();
+        MenuMusic.loop = true;
     }
 
     public void OnPlayPressed()
@@ -56,6 +60,7 @@ public class UIMenuManager : MonoBehaviour
         gameHUD.SetActive(true);
         inGameScene = true;
         GameManager._instance.doOnce = false;
+        MenuMusic.Stop();
         SceneManager.LoadScene("Game Scene");
     }
 
@@ -66,6 +71,7 @@ public class UIMenuManager : MonoBehaviour
         mainMenu.SetActive(true);
         inGameScene = false;
         GameManager._instance.doOnce = true;
+        MenuMusic.Play();
         SceneManager.LoadScene("Main Menu Scene");
     }
 

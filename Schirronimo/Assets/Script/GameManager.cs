@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     //UIManager reference
     private UIMenuManager menuManager;
 
+    public AudioSource jumpSound;
+
     [HideInInspector]
     public bool doOnce;
 
@@ -52,11 +54,6 @@ public class GameManager : MonoBehaviour
         menuManager = UIMenuManager.s_Singleton;
 
     }
-    void Start()
-    {
-
-    }
-
 
     void Update()
     {
@@ -143,6 +140,8 @@ public class GameManager : MonoBehaviour
         PlayerRB2D.gravityScale = gravityScale;
         playerScript.EnableMovementInputs();
         playerScript.DisableTakeoffInputs();
+
+        jumpSound.Play();
 
         player.GetComponent<Animator>().SetBool("InAir", true);
 
