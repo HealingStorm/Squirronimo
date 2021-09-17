@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
             {
                 timer = timerDefault;
 
-                spawningZone = new Vector3(Random.Range(-6f, 6f), Random.Range(player.position.y + 7, player.position.y + 30), player.position.z);
+                spawningZone = new Vector3(Random.Range(-6f, 6f), Random.Range(player.position.y + 7, player.position.y + 25), player.position.z);
                 if (boostOrBad == false)
                 {
                     GameObject boosterClone = Instantiate(booster, spawningZone, Quaternion.identity, spawnerParent);

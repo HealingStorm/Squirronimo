@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
         PlayerRB2D.velocity = new Vector2(0, 0);
         PlayerRB2D.gravityScale = 0;
         playerScript.DisableMovementInputs();
+        player.GetComponent<Animator>().SetBool("InAir", false);
 
         gameCam.Follow = null;
         gamecamGO.transform.position = new Vector3(0, 2, -10);
@@ -142,6 +143,8 @@ public class GameManager : MonoBehaviour
         PlayerRB2D.gravityScale = gravityScale;
         playerScript.EnableMovementInputs();
         playerScript.DisableTakeoffInputs();
+
+        player.GetComponent<Animator>().SetBool("InAir", true);
 
         if (playerScript.tapNumber <= 5)
         {
