@@ -7,6 +7,8 @@ TagManager:
   - laser
   - booster
   - enemy
+  - StartCam
+  - GameCam
   layers:
   - Default
   - TransparentFX

@@ -54,8 +54,9 @@ public class UIMenuManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         gameHUD.SetActive(true);
-        SceneManager.LoadScene("Game Scene");
         inGameScene = true;
+        GameManager._instance.doOnce = false;
+        SceneManager.LoadScene("Game Scene");
     }
 
     public void OnReturnToMenu()
@@ -63,8 +64,9 @@ public class UIMenuManager : MonoBehaviour
         pauseMenu.SetActive(false);
         gameOverScreen.SetActive(false);
         mainMenu.SetActive(true);
-        SceneManager.LoadScene("Main Menu Scene");
         inGameScene = false;
+        GameManager._instance.doOnce = true;
+        SceneManager.LoadScene("Main Menu Scene");
     }
 
     public void OnResumeGame()
@@ -87,6 +89,7 @@ public class UIMenuManager : MonoBehaviour
 
     public void OnRestart()
     {
+        GameManager._instance.doOnce = false;
         gameOverScreen.SetActive(false);
         GameManager._instance.GameStart();
     }

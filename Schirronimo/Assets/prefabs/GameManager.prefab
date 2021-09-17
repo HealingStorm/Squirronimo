@@ -43,14 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15d043a9676e1c4bbce3dd0eb651fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   gravityScale: 0.8
   takeoffHeight: 1050
   currentScore: 0
   maxScore: 0
   highScore: 0
-  gamecamGO: {fileID: 0}
-  startcamGO: {fileID: 0}
-  laser: {fileID: 0}
   spawnerToggle: 0
   menuManager: {fileID: 0}

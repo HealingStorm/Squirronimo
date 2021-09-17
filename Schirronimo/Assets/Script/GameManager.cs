@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
 
     //player
-    public GameObject player;
+    private GameObject player;
     private Rigidbody2D PlayerRB2D;
     private Player playerScript;
     public float gravityScale;
@@ -21,20 +21,22 @@ public class GameManager : MonoBehaviour
     public int highScore;
 
     //cams
-    public GameObject gamecamGO;
+    private GameObject gamecamGO;
     private CinemachineVirtualCamera gameCam;
-
-    public GameObject startcamGO;
+    private GameObject startcamGO;
     private CinemachineVirtualCamera startCam;
 
     //collider game over
-    public GameObject laser;
+    private GameObject laser;
 
     //Spawner toggle
     public bool spawnerToggle;
 
     //UIManager reference
-    public UIMenuManager menuManager;
+    private UIMenuManager menuManager;
+
+    [HideInInspector]
+    public bool doOnce;
 
     private void Awake()
     {
@@ -45,46 +47,63 @@ public class GameManager : MonoBehaviour
         }
         _instance = this;
         DontDestroyOnLoad(this.gameObject);
-        menuManager = UIMenuManager.s_Singleton;        
-    }
+        menuManager = UIMenuManager.s_Singleton;
 
-    private void Start() 
+    }
+    void Start()
     {
-        spawnerToggle = false;
-        PlayerRB2D = player.GetComponent<Rigidbody2D>();
-        gameCam = gamecamGO.GetComponent<CinemachineVirtualCamera>();
-        startCam = startcamGO.GetComponent<CinemachineVirtualCamera>();
-        playerScript = player.GetComponent<Player>();
-        startCam.Priority = 5;
-        gameCam.Priority = 1;
 
-        GameStart();
     }
+
 
     void Update()
     {
-        //quand le joueur monte, le death ray monte, quand le joueur descend, celui-ci reste sur place pour le cueillir
-        if(PlayerRB2D.velocity.y <= 0)
+        if (menuManager.inGameScene)
         {
-            laser.transform.position = new Vector2(0, laser.transform.position.y);
-        }
-
-        if(PlayerRB2D.velocity.y > 0)
-        {
-            laser.transform.position = new Vector2(0, player.transform.position.y - 20);
-        }
-
-        menuManager.currentScoreTxt.GetComponent<Text>().text = currentScore.ToString();
-        menuManager.highScoreTxt.GetComponent<Text>().text = maxScore.ToString();
-
-        currentScore = Mathf.FloorToInt(player.transform.position.y);
-        if(currentScore >= maxScore)
-        {
-            maxScore = currentScore;
-            if(maxScore >= highScore)
+            if (doOnce == false)
             {
-                highScore = maxScore;
-                menuManager.newRecord.SetActive(true);
+                startcamGO = GameObject.FindGameObjectWithTag("StartCam");
+                gamecamGO = GameObject.FindGameObjectWithTag("GameCam");
+                player = GameObject.FindGameObjectWithTag("Player");
+                spawnerToggle = false;
+                PlayerRB2D = player.GetComponent<Rigidbody2D>();
+                gameCam = gamecamGO.GetComponent<CinemachineVirtualCamera>();
+                startCam = startcamGO.GetComponent<CinemachineVirtualCamera>();
+                playerScript = player.GetComponent<Player>();
+                startCam.Priority = 5;
+                gameCam.Priority = 1;
+                laser = GameObject.FindGameObjectWithTag("laser");
+
+                GameStart();
+                doOnce = true;
+            }
+        }
+
+        if (menuManager.inGameScene)
+        {
+            //quand le joueur monte, le death ray monte, quand le joueur descend, celui-ci reste sur place pour le cueillir
+            if (PlayerRB2D.velocity.y <= 0)
+            {
+                laser.transform.position = new Vector2(0, laser.transform.position.y);
+            }
+
+            if (PlayerRB2D.velocity.y > 0)
+            {
+                laser.transform.position = new Vector2(0, player.transform.position.y - 20);
+            }
+
+            menuManager.currentScoreTxt.GetComponent<Text>().text = currentScore.ToString();
+            menuManager.highScoreTxt.GetComponent<Text>().text = maxScore.ToString();
+
+            currentScore = Mathf.FloorToInt(player.transform.position.y);
+            if (currentScore >= maxScore)
+            {
+                maxScore = currentScore;
+                if (maxScore >= highScore)
+                {
+                    highScore = maxScore;
+                    menuManager.newRecord.SetActive(true);
+                }
             }
         }
 
@@ -92,21 +111,21 @@ public class GameManager : MonoBehaviour
         menuManager.finalHighScore.GetComponent<Text>().text = highScore.ToString();
     }
 
-    
+
     public void GameStart()
     {
-        Debug.Log("gamestart");
-        player.transform.position = new Vector2(0,0);
+        player.transform.position = new Vector2(0, 0);
+        PlayerRB2D.velocity = new Vector2(0, 0);
         PlayerRB2D.gravityScale = 0;
         playerScript.DisableMovementInputs();
 
         gameCam.Follow = null;
-        gamecamGO.transform.position = new Vector3(0,2,-10);
-        
+        gamecamGO.transform.position = new Vector3(0, 2, -10);
+
         spawnerToggle = true;
 
         StartCoroutine(TakeOff());
-        
+
     }
 
     IEnumerator TakeOff()
